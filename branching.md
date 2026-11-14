@@ -85,12 +85,80 @@ git checkout main
 2. Running `git checkout -b test-branch` creates `test-branch` and switches to it immediately.
 3. Running `git branch` again confirms the green `*` pointer has moved to `test-branch`.
 
+---
+
 ## 6. Renaming a Branch
+If you made a typo in your branch name or want a clearer name, you can rename it locally.
+
+**If you are currently inside the branch you want to rename:**
+```bash
+git branch -m new-branch-name
+```
+
+**If you are on a different branch (e.g., `main`) and want to rename another branch:**
+```bash
+git branch -m old-branch-name new-branch-name
+```
+
+---
 
 ## 7. Deleting a Branch
+Once your work on a branch is complete and merged into `main`, it is good practice to delete the old branch to keep your workspace clean.
+
+1. First, make sure you are **not** currently inside the branch you want to delete (switch to `main` or another active branch):
+   ```bash
+   git checkout main
+   ```
+2. Safely delete a branch that has already been merged:
+   ```bash
+   git branch -d test-branch
+   ```
+3. **Force-deleting an unmerged branch:** If you created a temporary or experimental branch that is **not** merged, Git will prevent `-d` from deleting it to protect your work (`error: the branch 'test-branch' is not fully merged`). To force-delete it anyway, use a capital `-D`:
+   ```bash
+   git branch -D test-branch
+   ```
+
+---
 
 ## 8. Pushing a Branch to GitHub
+When you create a branch locally, it only exists on your computer. To share your branch with teammates on GitHub and open a Pull Request, you must push it to the remote repository (`origin`):
 
-<img width="1556" height="613" alt="github-branches" src="https://github.com/user-attachments/assets/a16e3561-f62f-4fab-894c-25dd911f4482" />
-<img width="892" height="208" alt="push-branch" src="https://github.com/user-attachments/assets/e5f4e9b4-cbcc-47f8-85d4-5417602ba202" />
+```bash
+git push -u origin docs/complete-branching
+```
+*(The `-u` flag links your local branch to the remote branch on GitHub. For future pushes on the same branch, you only need to type `git push`).*
+
+### Step 1: Terminal Output When Pushing a Branch
+![push-branch](<img width="892" height="208" alt="push-branch" src="https://github.com/user-attachments/assets/e5f4e9b4-cbcc-47f8-85d4-5417602ba202" />)
+
+*As seen above, Git uploads the branch (`[new branch] docs/complete-branching -> docs/complete-branching`), sets up tracking with `origin`, and provides a direct URL to open a Pull Request.*
+
+### Step 2: Verifying the Branch on GitHub
+![github-branches](<img width="1556" height="613" alt="github-branches" src="https://github.com/user-attachments/assets/a16e3561-f62f-4fab-894c-25dd911f4482" />)
+
+*Once pushed, opening the **Branches** page on the GitHub repository shows `docs/complete-branching` listed under **Your branches** and **Active branches** right alongside the default `main` branch.*
+
+---
+
 ## 9. Practical Example
+Below is the complete end-to-end workflow for a team member completing an assigned documentation task using a dedicated branch:
+
+```bash
+# 1. Switch to the main branch and pull the latest changes
+git checkout main
+git pull origin main
+
+# 2. Create and switch to a dedicated branch for the issue
+git checkout -b docs/complete-branching
+
+# 3. Verify your active branch
+git branch
+
+# 4. Edit 'branching.md', then stage and commit your changes in meaningful steps
+git add branching.md
+git commit -m "Add initial branch management explanations and examples"
+
+# 5. Push the branch to the remote GitHub repository
+git push -u origin docs/complete-branching
+```
+After pushing the branch in Step 5, navigate to the repository on GitHub, click **Compare & pull request**, link your Issue (e.g., `Closes #2`), and ask a teammate to review and merge your work!
