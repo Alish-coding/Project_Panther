@@ -11,4 +11,4 @@ Unknown university project
 
 ## Project Status
 
-Project Status: Under Review
+Project Status: Completed
