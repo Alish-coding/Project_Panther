@@ -4,10 +4,10 @@ Unknown university project
 
 | Name | GitHub Profile | Responsibility |
 |------|----------------|----------------|
-| Ali Shahbazi| https://github.com/Alish-coding| Backend Database
-| Nastaran Emami | https://github.com/USER2 | Backend
-| Mahtab Ranjbar | https://github.com/moonshine-dev | Frontend
-| Alireza Derisavi | https://github.com/USER4 | Frontend
+| Ali Shahbazi| https://github.com/Alish-coding| basic-commands
+| Nastaran Emami | https://github.com/nstrn3 | collabration
+| Mahtab Ranjbar | https://github.com/moonshine-dev | branching
+| Alireza Derisavi | https://github.com/alirezadsb | merging
 
 ## Project Status
 
